@@ -86,12 +86,12 @@ echo "127.0.0.1       controller" >> /etc/hosts
 
 ## make zeus folders
 ## echo "Installing MCP"
-mkdir /mcp
-cd /mcp
+mkdir /zeus
+cd /zeus
 
 
 ## build the config file with site api key
-touch /mcp/global_vars.php
+touch /zeus/global_vars.php
 echo "\n\n"
 echo "Please enter your MCP Site API Key:"
 
@@ -107,7 +107,7 @@ mkdir controller
 cd controller
 sudo git clone https://github.com/whittinghamj/deltacolo_zeus_controller.git --quiet
 cp global_vars.php controller/
-crontab controller/crontab.txt
+crontab /zeus/controller/crontab.txt
 
 ## reboot
 reboot

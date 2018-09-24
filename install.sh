@@ -69,38 +69,6 @@ mkdir /root/.ssh
 echo "Host *" > /root/.ssh/config
 echo " StrictHostKeyChecking no" >> /root/.ssh/config
 
-## write ssh key for root
-echo "Adding root SSH key for GitHub"
-echo "-----BEGIN RSA PRIVATE KEY-----
-MIIEowIBAAKCAQEArgycqh5AEbVdP64YAgzscwbKJbin6+eQWw46R7WnH9dZpIK7
-wy8pDks5XprtTJ+VfBtqhi2nbgGwzBS3mqsc4wIHAdcWSwgi0z7RDIkuFvrgT1hy
-oW2tzJ9uQpzXk+V8JYolALFj9Kn+C6EqHINYCDD3zZTDQcpso3ihm5J1x0FK3gJz
-yid8oEs935PLn5+X7wQbxT1X0yYG3weG852aqU6bK1cFFI7Kv+RCt5CWcjL047mZ
-wfTULA0Kt5Bu2TVFhU0uKPOhY1eBgjxQqq96LovcM8hSWFTXMxKlTG/rlvup3ziZ
-vIMBmOeghDMZoJJYNP8rxuRBPn9L0tbvOI9c4wIDAQABAoIBABMwvM1dDH9nWeK9
-lVQUjLWaGAvUsl8mZxpDFVX2x3iRTAcBiyZYOtSioq61slhyeA75DuPAgOd2NEIs
-PppFJ6g3/wHK72BSg1R7Zp1VOsm526WkAO+fojwfkA60MGjUMr4I30+WP4kofSRX
-HseKC9jLXWdDccv9P8E+ecMngOj5MXWHITNFQPi5YYhG0HrgfXs6eJ2tzVcIPHOS
-2YfCedIZVuYIKz8UQgrkHZyN49i15lTh/pdHi0kADYY/bqHhSoPxnPXE2yoczSV7
-F4SRB3VhG2wmW13W7kERsxLQRZQh+woxV1DYht6R7cZNUT6Zi9C6QWm3nRpLtNoc
-Hb9hvRECgYEA1CZCxCACLy0rtvT1eIHH399XFS852y02Sfo27wCpplc5OXKxFPV2
-VKTrdnB+V94dvn5hBTllCsNz2oW/FVr3m19ve1gBFECZVLpppBDM0tpqLYJSp7lI
-tP21ifa6tHAqm9pnOJgMWaWRg6AjIEFTFk49DBwIeykf6OORh+e3Ia8CgYEA0gZO
-bwfM3dp9C/6ogEMmJJ8WrSlOjq/M5TeZN2wvoR3AUfFdjKrW84yeOiZ+2fFWXMWO
-TqACjV/6PcnEtMdv4xJgUtRIv8NNVCqED3TPBp1OFInb/6P/Ke6ClYq7FSB0jBBs
-til/8rwcoxUgW5SStc+WC/h6vm8wOiDoBXuEiQ0CgYB5xriegc0fLWuhar0Y/k4w
-GLCRDXnFcQ9vqXws9xFq1TiY3Ff/suLItZ4fb3VmlK44Ma0ZZZe1dPokno9P/9aP
-zllc0OhVqrsZIqQPNEGOayd1lhBCDJ5KnjO9zO3hM12R9u03VDgKoXqEtsBS/Ixo
-CmMKd3D62WFiunZIL980KwKBgF0W3nzoAC31QaenYBg5qxZgTTTDMkacNT0Dv62J
-DjNjdHLdgJFwx4V7tkYf+emvxo+oIMNIuNjgyZHJdJ6MJ1OGOZt87CHS9ttvXMld
-BMXxw0HnONO+ZMK5LLgLnZBnqkDKpuS20DdOmYLPQmBVIhHjyKXVpNHzhnS9URnc
-/YmhAoGBAJPVtrTlfBGVK18b3zp108YOPf0nZKkhVKaCT+mKoPqTcMJlepUJFTpT
-72iDfeuCvLqYG6IuNNtkPW24n91l99MtZodZSmyLP8ez8Lluw1zusQ+FYVgqQxfP
-cMKRfSg5wH25RYBGMeNpON1AxTENJfaIN41jnQ1OwwTId1dY3LLO
------END RSA PRIVATE KEY-----" >> /root/.ssh/id_rsa
-chmod 600 /root/.ssh/id_rsa
-
-
 ## change SSH port to 33077 and only listen to IPv4
 echo "Updating SSHd details"
 sed -i 's/#Port 22/Port 33077/' /etc/ssh/sshd_config
@@ -133,8 +101,7 @@ $config['"'"api_key"'"'] = '"'$site_api_key';" > /zeus/global_vars.php
 
 
 ## get the zeus files
-git clone ssh://git@github.com/whittinghamj/deltacolo_zeus_controller.git --quiet
-mv deltacolo_zeus_controller controller
+sudo git clone https://github.com/whittinghamj/deltacolo_zeus_controller.git --quiet
 cp global_vars.php controller/
 crontab controller/crontab.txt
 

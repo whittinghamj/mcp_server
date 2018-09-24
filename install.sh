@@ -20,14 +20,17 @@ apt-get --force-yes -qq upgrade > /dev/null
 
 ## install dependencies
 echo "Installing Dependencies"
-apt-get install --force-yes -qq htop nload nmap sudo zlib1g-dev gcc make git autoconf autogen automake pkg-config locate curl php php-dev php-curl dnsutils sshpass fping > /dev/null
+apt-get install --force-yes -qq htop nload nmap sudo zlib1g-dev gcc make git autoconf autogen automake pkg-config locate curl php php-dev php-curl dnsutils sshpass fping shellinabox > /dev/null
 updatedb >> /dev/null
 
+
+## configure shellinabox
+sudo sed -i 's/--no-beep/--no-beep --disable-ssl/g' /etc/default/shellinabox
+sudo invoke-rc.d shellinabox restart
+
+
 ## install software
-## mkdir gotty
-## cd gotty
-## wget https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_arm.tar.gz
-## tar zxvf gotty_linux_arm.tar.gz
+
 
 cd /root
 
@@ -90,7 +93,7 @@ cd /mcp
 ## build the config file with site api key
 touch /mcp/global_vars.php
 echo "\n\n"
-echo "Please enter your ZEUS Site API Key:"
+echo "Please enter your MCP Site API Key:"
 
 read site_api_key
 

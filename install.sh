@@ -101,6 +101,8 @@ $config['"'"api_key"'"'] = '"'$site_api_key';" > /zeus/global_vars.php
 
 
 ## get the zeus files
+mkdir controller
+cd controller
 sudo git clone https://github.com/whittinghamj/deltacolo_zeus_controller.git --quiet
 cp global_vars.php controller/
 crontab controller/crontab.txt
